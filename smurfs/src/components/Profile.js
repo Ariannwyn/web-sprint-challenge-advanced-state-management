@@ -1,7 +1,6 @@
 import React from "react";
 
 function Profile({ smurfs }) {
-  console.log("Profile", smurfs.smurf);
   return smurfs.smurf.map((item, index) => {
     console.log("item", item);
     return (

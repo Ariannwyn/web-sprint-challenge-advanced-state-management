@@ -1,7 +1,6 @@
 import axios from "axios";
 export const START = "START";
 export const ADD_API = "ADD_API";
-export const POST_API = "POST_API";
 
 export const loadAPI = (data) => {
   return (dispatch) => {
