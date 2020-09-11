@@ -8,32 +8,31 @@ import Profile from "./Profile";
 
 export const POST_API = "POST_API";
 
-function App({ state, loadAPI }) {
+function App({ state }) {
   const [formState, setFormState] = useState({
     name: "",
     age: 0,
     height: "",
+    id: Date.now(),
   });
 
-  console.log("App props", state);
+  const postAPI = (data) => (dispatch) => {
+    axios
+      .post("http://localhost:3333/smurfs", formState)
+      .then((response) => {
+        console.log("response", response);
+        dispatch({
+          type: POST_API,
+          payload: response.data,
+        });
+      })
+      .catch((error) => console.log(error));
+  };
+
+  console.log("formState", formState);
   useEffect(() => {
     loadAPI();
   }, [loadAPI]);
-
-  const postAPI = (data) => {
-    return (dispatch) => {
-      axios
-        .post("http://localhost:3333/smurfs", formState)
-        .then((response) => {
-          console.log("response", response);
-          dispatch({
-            type: POST_API,
-            payload: response.data,
-          });
-        })
-        .catch((error) => console.log(error));
-    };
-  };
 
   const submitForm = (event) => {
     event.preventDefault();
