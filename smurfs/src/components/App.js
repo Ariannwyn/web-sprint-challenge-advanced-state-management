@@ -6,6 +6,7 @@ import "./App.css";
 import Profile from "./Profile";
 
 function App(props) {
+  console.log("props", props);
   const [formState, setFormState] = useState({
     name: "",
     age: 0,
@@ -65,7 +66,7 @@ function App(props) {
         </label>
         <button type="submit">Submit</button>
       </form>
-      {/* <Profile smurfs={state} /> */}
+      <Profile smurfs={props.smurf} />
     </div>
   );
 }
