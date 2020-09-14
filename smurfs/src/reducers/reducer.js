@@ -2,12 +2,14 @@ import { LOADING, ADD_API, POST_API } from "../actions/action";
 
 export const initialState = {
   isLoading: false,
-  smurf: {
-    name: "",
-    age: "",
-    height: "",
-    id: null,
-  },
+  smurf: [
+    {
+      name: "",
+      age: "",
+      height: "",
+      id: null,
+    },
+  ],
 };
 
 export const reducer = (state = initialState, action) => {
