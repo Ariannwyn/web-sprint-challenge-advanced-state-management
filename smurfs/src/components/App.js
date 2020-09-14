@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { loadAPI, postAPI } from "../actions/action";
 import { connect } from "react-redux";
 
 import "./App.css";
 import Profile from "./Profile";
 
-function App({ state, loadAPI, postAPI }) {
+function App(props) {
   const [formState, setFormState] = useState({
     name: "",
     age: 0,
@@ -14,8 +14,8 @@ function App({ state, loadAPI, postAPI }) {
   });
 
   const submitForm = (e) => {
-    // e.preventDefault();
-    postAPI(formState);
+    e.preventDefault();
+    props.postAPI(formState);
   };
 
   const handleChanges = (e) => {
@@ -45,6 +45,24 @@ function App({ state, loadAPI, postAPI }) {
             <option value="Hefty">Hefty</option>
           </select>
         </label>
+        <label htmlFor="height">
+          <input
+            type="text"
+            name="height"
+            id="height"
+            value={formState.height}
+            onChange={handleChanges}
+          />
+        </label>
+        <label htmlFor="age">
+          <input
+            type="text"
+            name="age"
+            id="age"
+            value={formState.age}
+            onChange={handleChanges}
+          />
+        </label>
         <button type="submit">Submit</button>
       </form>
       {/* <Profile smurfs={state} /> */}
@@ -56,10 +74,5 @@ const mapStateToProps = (state) => {
   console.log("App state", state);
   return { smurf: state.smurf };
 };
-
-// const mapDispatchToProps = (dispatch) => {
-//   console.log(dispatch);
-//   thing: () => dispatch({ type: POST_API });
-// };
 
 export default connect(mapStateToProps, { loadAPI, postAPI })(App);
